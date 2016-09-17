@@ -4,19 +4,19 @@ def input_student
 
     while !name.empty? do
         puts 'Enter name:'                                                  
-        name = gets.chomp
+        name = gets.rstrip
 
         if name.empty? then break end
 
         puts 'Enter fav. programming language:'
-        lang = gets.chomp
+        lang = gets.rstrip
         
         @cohorts = [:january, :february, :march, :may, :june, :july, :august, :september, :october, :november, :december]
         cohort = ''
 
         while !@cohorts.include?(cohort)
             puts 'Enter cohort'
-            cohort = gets.chomp.downcase.to_sym
+            cohort = gets.rstrip.downcase.to_sym
         end
 
         student << {name: name, cohort: cohort, lang: lang}
@@ -33,7 +33,7 @@ n = 1
     @cohorts.each do |coh|
         s.each do |s|
             if s[:cohort] == coh
-                puts "#{n}. #{s[:name].capitalize} (#{s[:cohort].capitalize} cohort),  likes  #{s[:lang]}".center(80, '*')
+                puts "#{n}. #{s[:name].capitalize} (#{s[:cohort].capitalize} cohort), likes #{s[:lang]}".center(80, '*')
                 n += 1
             end
         end
