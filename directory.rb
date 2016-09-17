@@ -11,10 +11,10 @@ def input_student
         puts 'Enter fav. programming language:'
         lang = gets.chomp
         
-        cohorts = [:january, :february, :march, :may, :june, :july, :august, :september, :october, :november, :december]
+        @cohorts = [:january, :february, :march, :may, :june, :july, :august, :september, :october, :november, :december]
         cohort = ''
 
-        while !cohorts.include?(cohort)
+        while !@cohorts.include?(cohort)
             puts 'Enter cohort'
             cohort = gets.chomp.downcase.to_sym
         end
@@ -30,12 +30,14 @@ def print_header
 end
 def print(s)
 n = 1
-         while n <= s.length 
-            if s.length < 12
-                puts "#{n}. #{s[n - 1][:name].capitalize} (#{s[n - 1][:cohort].capitalize} cohort),  likes  #{s[n - 1][:lang]}".center(80, '*')
+    @cohorts.each do |coh|
+        s.each do |s|
+            if s[:cohort] == coh
+                puts "#{n}. #{s[:name].capitalize} (#{s[:cohort].capitalize} cohort),  likes  #{s[:lang]}".center(80, '*')
                 n += 1
             end
         end
+    end
 end
 def print_footer(list)
     puts "Overall, we have #{list.count} great students.".center(80,'=')
