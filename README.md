@@ -6,4 +6,4 @@ This script manages student enrollment lists.
 
 ```shell
 ruby directory.rb
-'''
+```
