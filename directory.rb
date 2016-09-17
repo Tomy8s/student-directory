@@ -10,8 +10,16 @@ def input_student
 
         puts 'Enter fav. programming language:'
         lang = gets.chomp
+        
+        cohorts = [:january, :february, :march, :may, :june, :july, :august, :september, :october, :november, :december]
+        cohort = ''
 
-        student << {name: name, cohort: :november, lang: lang}
+        while !cohorts.include?(cohort)
+            puts 'Enter cohort'
+            cohort = gets.chomp.downcase.to_sym
+        end
+
+        student << {name: name, cohort: cohort, lang: lang}
         puts "Now we have #{student.count} students."
     end
     student
@@ -24,7 +32,7 @@ def print(s)
 n = 1
          while n <= s.length 
             if s.length < 12
-                puts "#{n}. #{s[n - 1][:name]} (#{s[n - 1][:cohort]} cohort),  likes  #{s[n - 1][:lang]}".center(80, '*')
+                puts "#{n}. #{s[n - 1][:name].capitalize} (#{s[n - 1][:cohort].capitalize} cohort),  likes  #{s[n - 1][:lang]}".center(80, '*')
                 n += 1
             end
         end
