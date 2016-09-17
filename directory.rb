@@ -1,6 +1,3 @@
-student_count = 11
-
-
 student = [
  "Dr. Hanibal Lecter",
  "Darth Vader",
@@ -14,7 +11,7 @@ student = [
  "Joffrey Baratheon",
  "Normal Bates"
  ]
- 
+
 puts "The students of Villains Academy"
 puts "------------------"
 puts student[0]
@@ -29,4 +26,4 @@ puts student[8]
 puts student[9]
 puts student[10]
 
-puts "Overall, we have #{student_count} great students."
+puts "Overall, we have #{students.count} great students."
