@@ -20,7 +20,7 @@ def input_student
         end
 
         student << {name: name, cohort: cohort, lang: lang}
-        puts "Now we have #{student.count} students."
+        puts "Now we have #{student.count} student#{if student.count != 1 then 's' end}."
     end
     student
 end
