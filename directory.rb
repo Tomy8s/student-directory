@@ -16,8 +16,15 @@ def print_header
     puts "------------------"
 end
 def print(student)
+puts "First letter of students' names:"
+x = gets.chomp
 n = 1
-        student.each{ |s| puts "#{n}. #{s[:name]} (#{s[:cohort]} cohort)"; n += 1}
+        student.each do |s| 
+            if s[:name][0].downcase == x
+                puts "#{n}. #{s[:name]} (#{s[:cohort]} cohort)"
+                n += 1
+            end
+        end
 end
 def print_footer(list)
     puts "Overall, we have #{list.count} great students."
