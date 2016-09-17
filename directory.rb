@@ -1,13 +1,18 @@
 def input_student
     student = []
-
-    puts 'Enter name: '
-    name = gets.chomp
+    name = ' '
 
     while !name.empty? do
-        student << {name: name, cohort: :november}
-        puts "Now we have #{student.count} students."
+        puts 'Enter name:'                                                  
         name = gets.chomp
+
+        if name.empty? then break end
+
+        puts 'Enter fav. programming language:'
+        lang = gets.chomp
+
+        student << {name: name, cohort: :november, lang: lang}
+        puts "Now we have #{student.count} students."
     end
     student
 end
@@ -19,7 +24,7 @@ def print(s)
 n = 1
          while n <= s.length 
             if s.length < 12
-                puts "#{n}. #{s[n - 1][:name]} (#{s[n - 1][:cohort]} cohort)"
+                puts "#{n}. #{s[n - 1][:name]} (#{s[n - 1][:cohort]} cohort),  likes  #{s[n - 1][:lang]}"
                 n += 1
             end
         end
