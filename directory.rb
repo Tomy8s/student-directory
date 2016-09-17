@@ -16,11 +16,9 @@ def print_header
     puts "------------------"
 end
 def print(student)
-puts "First letter of students' names:"
-x = gets.chomp
 n = 1
         student.each do |s| 
-            if s[:name][0].downcase == x
+            if s[:name].length < 12
                 puts "#{n}. #{s[:name]} (#{s[:cohort]} cohort)"
                 n += 1
             end
