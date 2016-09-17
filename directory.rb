@@ -29,12 +29,14 @@ def print_header
     puts "--------------------------------".center(80,'/\\')
 end
 def print(s)
-n = 1
-    @cohorts.each do |coh|
-        s.each do |s|
-            if s[:cohort] == coh
-                puts "#{n}. #{s[:name].capitalize} (#{s[:cohort].capitalize} cohort), likes #{s[:lang]}".center(80, '*')
-                n += 1
+    if !s.empty?
+        n = 1
+        @cohorts.each do |coh|
+            s.each do |s|
+                if s[:cohort] == coh
+                    puts "#{n}. #{s[:name].capitalize} (#{s[:cohort].capitalize} cohort), likes #{s[:lang]}".center(80, '*')
+                    n += 1
+                end
             end
         end
     end
