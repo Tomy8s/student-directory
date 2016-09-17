@@ -17,20 +17,20 @@ def input_student
     student
 end
 def print_header
-    puts "The students of Villains Academy"
-    puts "------------------"
+    puts "The students of Villains Academy".center(80,'~')
+    puts "--------------------------------".center(80,'/\\')
 end
 def print(s)
 n = 1
          while n <= s.length 
             if s.length < 12
-                puts "#{n}. #{s[n - 1][:name]} (#{s[n - 1][:cohort]} cohort),  likes  #{s[n - 1][:lang]}"
+                puts "#{n}. #{s[n - 1][:name]} (#{s[n - 1][:cohort]} cohort),  likes  #{s[n - 1][:lang]}".center(80, '*')
                 n += 1
             end
         end
 end
 def print_footer(list)
-    puts "Overall, we have #{list.count} great students."
+    puts "Overall, we have #{list.count} great students.".center(80,'=')
 end
 
 student = input_student
