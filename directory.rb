@@ -26,4 +26,4 @@ puts student[8]
 puts student[9]
 puts student[10]
 
-puts "Overall, we have #{students.count} great students."
+puts "Overall, we have #{student.count} great students."
