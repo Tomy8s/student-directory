@@ -15,11 +15,11 @@ def print_header
     puts "The students of Villains Academy"
     puts "------------------"
 end
-def print(student)
+def print(s)
 n = 1
-        student.each do |s| 
-            if s[:name].length < 12
-                puts "#{n}. #{s[:name]} (#{s[:cohort]} cohort)"
+         while n <= s.length 
+            if s.length < 12
+                puts "#{n}. #{s[n - 1][:name]} (#{s[n - 1][:cohort]} cohort)"
                 n += 1
             end
         end
