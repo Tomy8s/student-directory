@@ -29,23 +29,36 @@ def print_header
     puts "--------------------------------".center(80,'/\\')
 end
 def print(s)
+    print_header
     if !s.empty?
         n = 1
         @cohorts.each do |coh|
             s.each do |s|
                 if s[:cohort] == coh
-                    puts "#{n}. #{s[:name].capitalize} (#{s[:cohort].capitalize} cohort), likes #{s[:lang]}".center(80, '*')
+                    puts "#{n}. #{s[:name].split.map(&:capitalize).join(' ')} (#{s[:cohort].capitalize} cohort), likes #{s[:lang]}".center(80, '*')
                     n += 1
                 end
             end
         end
     end
+    print_footer s
 end
 def print_footer(list)
     puts "Overall, we have #{list.count} great students.".center(80,'=')
 end
-
-student = input_student
-print_header
-print student
-print_footer student
+def menu
+    student = []
+    loop do
+        puts 'What would you like to do? (enter the option number)'
+        puts '1. Enrollment new student 2. Show enrolled 0. Exit'
+        select = gets.chomp
+        case select
+            when "1" then student += input_student
+            when "2" then print student
+            when "0" then exit
+            else
+                puts 'please enter the option number.'
+        end
+    end
+end
+menu
