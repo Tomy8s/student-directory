@@ -49,17 +49,19 @@ def show(s)
 end
 def puts_menu
     puts 'What would you like to do? (enter the option number)'
-    puts '1. Enrollment new student'
-    puts '2. Show enrolled'
-    puts '3. Save enrolled students'
+    puts '1. Enroll new student'
+    puts '2. Load previous enrollments'
+    puts '3. Show enrolled'
+    puts '4. Save enrolled students'
     puts '0. Exit without saving'
 end
 def menu_select
     select = gets.chomp
     case select
         when "1" then input_student
-        when "2" then show @student
-        when "3" then save_students
+        when "2" then load_students; show @student
+        when "3" then show @student
+        when "4" then save_students
         when "0" then exit
         else
             puts 'please enter the option number.'
@@ -73,10 +75,18 @@ def menu
         menu_select
     end
 end
+def load_students
+    dir = File.open('directory.csv','r')
+    dir.readlines.each do |s|
+        name, lang, cohort = s.chomp.split(',')
+        @student << {name: name, lang: lang, cohort: cohort.to_sym}
+    end
+    dir.close
+end
 def save_students
     doc = File.open('directory.csv','a')
     @student.each do |s|
-        doc.puts [s[:name], s[:cohort], s[:lang]].join(',') 
+        doc.puts [s[:name], s[:lang], s[:cohort]].join(',') 
     end
     doc.close
 end
