@@ -1,6 +1,6 @@
 $cohorts = [:january, :february, :march, :may, :june, :july, :august, :september, :october, :november, :december]
 @student = []
-
+@filename = 'directory.csv'
 
 def input_student
     name = ' '
@@ -62,11 +62,12 @@ end
 
 def puts_menu
     puts
-    puts 'What would you like to do? (enter the option number)'
+    puts 'What would you like to do? (enter the option number):'
     puts '1. Enroll new student'
     puts '2. Load previous enrollments'
     puts '3. Show enrolled'
     puts '4. Save enrolled students'
+    puts '9. Save and exit'
     puts '0. Exit without saving'
 end
 
@@ -80,7 +81,7 @@ def menu_select(select)
     when "2"
         puts "\nLoading student lists"
         puts '---------------------'
-        load_students; show
+        load_students
     when "3" then
         puts "\nShowing student lists"
         puts '---------------------'
@@ -89,7 +90,11 @@ def menu_select(select)
         puts "\nSaving student lists"
         puts '---------------------'
         save_students
-    when "0" then exit
+    when "9"
+        puts "\nSaving and exiting"
+        puts '---------------------'
+        save_students; quit
+    when "0" then quit
     else
         puts 'please enter the option number.'
     end
@@ -107,7 +112,7 @@ end
 def load_on_run
     filename = ARGV.first
     if !filename.nil?
-        load_students(filename)
+        load_students
     else
         load_err
     end
@@ -115,7 +120,7 @@ end
 
 
 def load_err
-    puts 'No file found. Load from default? (Y/N)'
+    puts 'No file found. Load Now? (Y/N)'
     ans = gets.chomp
     case ans[0].downcase
     when 'y' then load_students
@@ -125,24 +130,38 @@ def load_err
 end
 
 
-def load_students(filename = 'directory.csv')
-    dir = File.open(filename,'r')
+def file_loc
+    print "Enter .csv filename (leave  blank for default: #{@filename}): "
+    @filename = gets.chomp.empty? ? @filename : gets.chomp
+end
+
+
+def load_students
+    file_loc
+    dir = File.open(@filename,'r')
     dir.readlines.each do |s|
         name, lang, cohort = s.chomp.split(',')
         @student << {name: name, lang: lang, cohort: cohort.to_sym}
     end
-    puts "#{@student.length} students loaded from #{filename}"
     dir.close
+    puts "#{@student.length} student#{if @student.count != 1 then 's' end} loaded from #{@filename}."
 end
 
 
 def save_students
-    doc = File.open('directory.csv','w')
+    file_loc
+    doc = File.open(@filename,'w')
     @student.each do |s|
         doc.puts [s[:name], s[:lang], s[:cohort]].join(',') 
     end
     doc.close
-    puts "#{@student.length} student#{if @student.count != 1 then 's' end} saved to 'directory.csv'"
+    puts "#{@student.length} student#{if @student.count != 1 then 's' end} saved to '#{@filename}'."
+end
+
+
+def quit
+    puts 'Goodbye!'
+    exit
 end
 
 
