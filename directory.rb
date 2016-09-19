@@ -49,7 +49,7 @@ end
 
 
 def print_footer
-    puts "Overall, we have #{@student.count} great students.".center(80,'=')
+    puts "Overall, we have #{@student.count} great student#{if @student.count != 1 then 's' end}.".center(80,'=')
 end
 
 
@@ -61,6 +61,7 @@ end
 
 
 def puts_menu
+    puts
     puts 'What would you like to do? (enter the option number)'
     puts '1. Enroll new student'
     puts '2. Load previous enrollments'
@@ -72,10 +73,22 @@ end
 
 def menu_select(select)
     case select
-    when "1" then input_student
-    when "2" then load_students; show
-    when "3" then show
-    when "4" then save_students
+    when "1"
+        puts "\nEnroll new students"
+        puts '-------------------'
+        input_student
+    when "2"
+        puts "\nLoading student lists"
+        puts '---------------------'
+        load_students; show
+    when "3" then
+        puts "\nShowing student lists"
+        puts '---------------------'
+        show
+    when "4"
+        puts "\nSaving student lists"
+        puts '---------------------'
+        save_students
     when "0" then exit
     else
         puts 'please enter the option number.'
@@ -129,6 +142,7 @@ def save_students
         doc.puts [s[:name], s[:lang], s[:cohort]].join(',') 
     end
     doc.close
+    puts "#{@student.length} student#{if @student.count != 1 then 's' end} saved to 'directory.csv'"
 end
 
 
