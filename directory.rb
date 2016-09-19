@@ -1,5 +1,7 @@
 $cohorts = [:january, :february, :march, :may, :june, :july, :august, :september, :october, :november, :december]
 @student = []
+
+
 def input_student
     name = ' '
 
@@ -23,10 +25,14 @@ def input_student
         puts "Now we have #{@student.count} student#{if @student.count != 1 then 's' end}."
     end
 end
+
+
 def print_header
     puts "The students of Villains Academy".center(80,'~')
     puts "--------------------------------".center(80,'/\\')
 end
+
+
 def print_student
     if !@student.empty?
         n = 1
@@ -40,14 +46,20 @@ def print_student
         end
     end
 end
+
+
 def print_footer
     puts "Overall, we have #{@student.count} great students.".center(80,'=')
 end
+
+
 def show
     print_header
     print_student
     print_footer
 end
+
+
 def puts_menu
     puts 'What would you like to do? (enter the option number)'
     puts '1. Enroll new student'
@@ -56,6 +68,8 @@ def puts_menu
     puts '4. Save enrolled students'
     puts '0. Exit without saving'
 end
+
+
 def menu_select(select)
     case select
     when "1" then input_student
@@ -67,12 +81,16 @@ def menu_select(select)
         puts 'please enter the option number.'
     end
 end
+
+
 def menu
     loop do
         puts_menu
         menu_select(gets.chomp)
     end
 end
+
+
 def load_on_run
     filename = ARGV.first
     if !filename.nil?
@@ -81,6 +99,8 @@ def load_on_run
         load_err
     end
 end
+
+
 def load_err
     puts 'No file found. Load from default? (Y/N)'
     ans = gets.chomp
@@ -90,6 +110,8 @@ def load_err
     else load_err
     end
 end
+
+
 def load_students(filename = 'directory.csv')
     dir = File.open(filename,'r')
     dir.readlines.each do |s|
@@ -99,6 +121,8 @@ def load_students(filename = 'directory.csv')
     puts "#{@student.length} students loaded from #{filename}"
     dir.close
 end
+
+
 def save_students
     doc = File.open('directory.csv','w')
     @student.each do |s|
@@ -106,5 +130,7 @@ def save_students
     end
     doc.close
 end
+
+
 load_on_run
 menu
