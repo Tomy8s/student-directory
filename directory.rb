@@ -14,7 +14,7 @@ def input_student
         cohort = ''
 
         while !@cohorts.include?(cohort)
-            puts 'Enter cohort'
+            puts 'Enter cohort:'
             cohort = gets.chomp.downcase.to_sym
         end
 
@@ -58,7 +58,7 @@ def menu_select
     case select
         when "1" then input_student
         when "2" then show @student
-        when "0" then exit
+        when "0" then save_students; exit
         else
             puts 'please enter the option number.'
             menu_select
@@ -70,5 +70,12 @@ def menu
         puts_menu
         menu_select
     end
+end
+def save_students
+    doc = File.open('directory.csv','w')
+    @student.each do |s|
+        doc.puts [s[:name], s[:cohort], s[:lang]].join(',')
+    end
+    doc.close
 end
 menu
