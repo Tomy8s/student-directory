@@ -74,9 +74,9 @@ def menu
     end
 end
 def save_students
-    doc = File.open('directory.csv','w')
+    doc = File.open('directory.csv','a')
     @student.each do |s|
-        doc.puts [s[:name], s[:cohort], s[:lang]].join(',')
+        doc.puts [s[:name], s[:cohort], s[:lang]].join(',') 
     end
     doc.close
 end
