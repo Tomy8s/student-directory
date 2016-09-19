@@ -51,14 +51,16 @@ def puts_menu
     puts 'What would you like to do? (enter the option number)'
     puts '1. Enrollment new student'
     puts '2. Show enrolled'
-    puts '0. Exit'
+    puts '3. Save enrolled students'
+    puts '0. Exit without saving'
 end
 def menu_select
     select = gets.chomp
     case select
         when "1" then input_student
         when "2" then show @student
-        when "0" then save_students; exit
+        when "3" then save_students
+        when "0" then exit
         else
             puts 'please enter the option number.'
             menu_select
